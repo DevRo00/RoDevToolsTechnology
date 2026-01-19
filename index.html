@@ -1,132 +1,730 @@
-พูดถึงเรา</h2>
-<div class="testimonial-grid">
-<div class="testimonial-card">
-<p>"ประหยัดเวลาได้มากมาย! เกมที่ควรใช้เวลาพัฒนา 3 เดือน ตอนนี้ทำเสร็จใน 2 สัปดาห์"</p>
-<div class="testimonial-author">- DevMaster_TH</div>
-</div>
-<div class="testimonial-card">
-<p>"โค้ดเขียนดี ปรับแต่งง่าย Documentation ครบ Support ตอบเร็วมาก แนะนำเลยครับ"</p>
-<div class="testimonial-author">- RobloxPro2024</div>
-</div>
-<div class="testimonial-card">
-<p>"คุ้มค่ามากๆ ซื้อแพ็ก Pro มา ได้ระบบครบ ทำเกมเสร็จไวกว่าเดิมเยอะ"</p>
-<div class="testimonial-author">- GameCreator99</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Contact/Order Section -->
-<section id="contact" class="cta-section">
-    <div class="container">
-        <h2>พร้อมเริ่มสร้างเกมแล้วหรือยัง?</h2>
-        <p>ติดต่อเราเพื่อสั่งซื้อหรือสอบถามข้อมูลเพิ่มเติม</p>
-        
-        <div class="contact-form">
-            <form id="orderForm">
-                <div class="form-group">
-                    <label for="name">ชื่อ-นามสกุล *</label>
-                    <input type="text" id="name" name="name" required placeholder="กรอกชื่อของคุณ">
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Email *</label>
-                    <input type="email" id="email" name="email" required placeholder="example@email.com">
-                </div>
-                
-                <div class="form-group">
-                    <label for="discord">Discord Username</label>
-                    <input type="text" id="discord" name="discord" placeholder="username#1234">
-                </div>
-                
-                <div class="form-group">
-                    <label for="package">แพ็กเกจที่สนใจ *</label>
-                    <select id="package" name="package" required>
-                        <option value="">-- เลือกแพ็กเกจ --</option>
-                        <option value="starter">Starter Pack - ฿1,499</option>
-                        <option value="pro">Pro Pack - ฿2,999 (แนะนำ)</option>
-                        <option value="subscription">Subscription - ฿399/เดือน</option>
-                        <option value="single">ซื้อระบบเดี่ยว</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="message">ข้อความเพิ่มเติม</label>
-                    <textarea id="message" name="message" placeholder="บอกเราว่าคุณต้องการอะไร..."></textarea>
-                </div>
-                
-                <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.2rem;">ส่งคำสั่งซื้อ</button>
-            </form>
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoDevTools - ระบบเกมสำเร็จรูปสำหรับนักพัฒนา Roblox</title>
+    <meta name="description" content="ระบบและฟีเจอร์สำเร็จรูปคุณภาพสูงสำหรับนักพัฒนา Roblox ประหยัดเวลากว่า 100+ ชั่วโมง">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links a {
+            margin-left: 2rem;
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            color: white;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 2px 2px 20px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        .features {
+            background: white;
+            padding: 6rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .products {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 6rem 2rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .product-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .product-body {
+            padding: 2rem;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .product-features li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .product-features li:before {
+            content: "✓ ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .pricing {
+            background: white;
+            padding: 6rem 2rem;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: white;
+            border: 3px solid #eee;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .pricing-card.featured {
+            border-color: #667eea;
+            transform: scale(1.05);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.3);
+        }
+
+        .pricing-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .pricing-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonials {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 6rem 2rem;
+            color: white;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            text-align: right;
+        }
+
+        .cta-section {
+            background: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #667eea;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #667eea;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
             
-            <div style="margin-top: 2rem; text-align: center; color: #666;">
-                <p><strong>หรือติดต่อเราโดยตรง:</strong></p>
-                <p>📧 Email: contact@rodevtools.com</p>
-                <p>💬 Discord: discord.gg/rodevtools</p>
-                <p>📱 Line: @rodevtools</p>
+            .nav-links {
+                display: none;
+            }
+            
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: white;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 3rem auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">🎮 RoDevTools</div>
+            <div class="nav-links">
+                <a href="#features">ฟีเจอร์</a>
+                <a href="#products">ผลิตภัณฑ์</a>
+                <a href="#pricing">ราคา</a>
+                <a href="#testimonials">รีวิว</a>
+                <a href="#contact">ติดต่อ</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>🚀 สร้างเกม Roblox ได้ภายใน 1 วัน</h1>
+            <p>ระบบและฟีเจอร์สำเร็จรูปคุณภาพสูง พร้อมใช้งานทันที<br>ประหยัดเวลากว่า 100+ ชั่วโมงในการพัฒนา</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">ติดต่อซื้อเลย</a>
+                <a href="#products" class="btn btn-secondary">ดูผลิตภัณฑ์</a>
+            </div>
+            <div style="margin-top: 3rem; display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap;">
+                <div>
+                    <span class="stat-number">500+</span>
+                    <div>นักพัฒนาใช้งาน</div>
+                </div>
+                <div>
+                    <span class="stat-number">50+</span>
+                    <div>ระบบพร้อมใช้</div>
+                </div>
+                <div>
+                    <span class="stat-number">24/7</span>
+                    <div>ซัพพอร์ต</div>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Footer -->
-<footer>
-    <div class="container">
-        <div class="footer-links">
-            <a href="#features">ฟีเจอร์</a>
-            <a href="#products">ผลิตภัณฑ์</a>
-            <a href="#pricing">ราคา</a>
-            <a href="#testimonials">รีวิว</a>
-            <a href="#contact">ติดต่อ</a>
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">ทำไมต้องเลือกเรา?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>ติดตั้งง่าย ใช้ได้ทันที</h3>
+                    <p>Copy-Paste เข้าโปรเจค ใช้เวลาไม่เกิน 5 นาที พร้อม Documentation ครบถ้วน</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>ปรับแต่งได้ 100%</h3>
+                    <p>โค้ดเขียนแบบโมดูลาร์ แก้ไขง่าย ปรับให้เข้ากับเกมของคุณได้ทุกแบบ</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>ปลอดภัย ไร้บั๊ก</h3>
+                    <p>ทดสอบมาแล้วกว่า 1,000 ชั่วโมง รับประกันความเสถียร พร้อม Update ฟรี</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>คู่มือครบถ้วน</h3>
+                    <p>มี Video Tutorial, Documentation และตัวอย่างโค้ดให้ศึกษา</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3>Support 24/7</h3>
+                    <p>ทีมงานพร้อมช่วยเหลือตลอด 24 ชม. ผ่าน Discord และ Email</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎁</div>
+                    <h3>Update ตลอดชีพ</h3>
+                    <p>รับ Update ฟีเจอร์ใหม่ๆ และ Bug Fixes ฟรีตลอดไป</p>
+                </div>
+            </div>
         </div>
-        
-        <div class="social-links">
-            <a href="#" title="Discord">💬</a>
-            <a href="#" title="YouTube">📺</a>
-            <a href="#" title="Twitter">🐦</a>
-            <a href="#" title="GitHub">💻</a>
+    </section>
+
+    <section id="products" class="products">
+        <div class="container">
+            <h2 class="section-title">ระบบยอดนิยม</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-header">
+                        <h3>Admin System</h3>
+                        <div class="product-price">฿499</div>
+                        <p>ระบบจัดการผู้เล่น</p>
+                    </div>
+                    <div class="product-body">
+                        <ul class="product-features">
+                            <li>คำสั่งกว่า 30+ Commands</li>
+                            <li>ระบบสิทธิ์หลายระดับ</li>
+                            <li>GUI Admin Panel</li>
+                            <li>Ban/Kick System</li>
+                            <li>Custom Notifications</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary" style="width: 100%;">สนใจซื้อ</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-header">
+                        <h3>Datastore Pro</h3>
+                        <div class="product-price">฿699</div>
+                        <p>บันทึกข้อมูลอัตโนมัติ</p>
+                    </div>
+                    <div class="product-body">
+                        <ul class="product-features">
+                            <li>Auto-save ทุก 5 นาที</li>
+                            <li>รองรับข้อมูลไม่จำกัด</li>
+                            <li>Backup System</li>
+                            <li>Error Handling</li>
+                            <li>Migration Tools</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary" style="width: 100%;">สนใจซื้อ</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-header">
+                        <h3>Shop System</h3>
+                        <div class="product-price">฿899</div>
+                        <p>ร้านค้าในเกม</p>
+                    </div>
+                    <div class="product-body">
+                        <ul class="product-features">
+                            <li>UI สวยงาม ทันสมัย</li>
+                            <li>รองรับ Robux/เหรียญ</li>
+                            <li>Gamepass Integration</li>
+                            <li>Limited Items</li>
+                            <li>Sale System</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary" style="width: 100%;">สนใจซื้อ</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-header">
+                        <h3>Inventory System</h3>
+                        <div class="product-price">฿799</div>
+                        <p>กระเป๋าไอเทม</p>
+                    </div>
+                    <div class="product-body">
+                        <ul class="product-features">
+                            <li>Drag & Drop</li>
+                            <li>ระบบหมวดหมู่</li>
+                            <li>Stack Items</li>
+                            <li>Quick Equip</li>
+                            <li>Search Function</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary" style="width: 100%;">สนใจซื้อ</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-header">
+                        <h3>Daily Rewards</h3>
+                        <div class="product-price">฿599</div>
+                        <p>รางวัลรายวัน</p>
+                    </div>
+                    <div class="product-body">
+                        <ul class="product-features">
+                            <li>7-Day Streak System</li>
+                            <li>Bonus Rewards</li>
+                            <li>Countdown Timer</li>
+                            <li>Custom Rewards</li>
+                            <li>VIP Multiplier</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary" style="width: 100%;">สนใจซื้อ</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-header">
+                        <h3>Combat System</h3>
+                        <div class="product-price">฿1,299</div>
+                        <p>ระบบการต่อสู้</p>
+                    </div>
+                    <div class="product-body">
+                        <ul class="product-features">
+                            <li>Melee & Ranged</li>
+                            <li>Hit Detection</li>
+                            <li>Damage System</li>
+                            <li>Combo System</li>
+                            <li>Visual Effects</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary" style="width: 100%;">สนใจซื้อ</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <p style="margin-top: 2rem; opacity: 0.7;">
-            © 2025 RoDevTools. All rights reserved.<br>
-            ระบบคุณภาพสูงสำหรับนักพัฒนา Roblox
-        </p>
-    </div>
-</footer>
+    </section>
 
-<script>
-    // Smooth scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        });
-    });
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">แพ็กเกจพิเศษ</h2>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>Starter Pack</h3>
+                    <div class="product-price">฿1,499</div>
+                    <p style="color: #666; margin-bottom: 2rem;">เหมาะกับมือใหม่</p>
+                    <ul class="product-features" style="text-align: left;">
+                        <li>เลือกระบบได้ 3 ชิ้น</li>
+                        <li>Documentation</li>
+                        <li>Video Tutorial</li>
+                        <li>Support 30 วัน</li>
+                        <li>Update 6 เดือน</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary" style="width: 100%; margin-top: 2rem;">เลือกแพ็กนี้</a>
+                </div>
 
-    // Form submission
-    document.getElementById('orderForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            discord: document.getElementById('discord').value,
-            package: document.getElementById('package').value,
-            message: document.getElementById('message').value
-        };
-        
-        // แสดงข้อความยืนยัน
-        alert('ขอบคุณสำหรับความสนใจ! เราจะติดต่อกลับภายใน 24 ชั่วโมง\n\nข้อมูลของคุณ:\n' + 
-              'ชื่อ: ' + formData.name + '\n' +
-              'Email: ' + formData.email + '\n' +
-              'แพ็กเกจ: ' + formData.package);
-        
-        // Reset form
-        this.reset();
-        
-        // TODO: ในอนาคตจะเชื่อมต่อกับระบบรับคำสั่งซื้อจริง
-    });
-</script>
-</body>
-</html>
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">🔥 ยอดนิยม</div>
+                    <h3>Pro Pack</h3>
+                    <div class="product-price">฿2,999</div>
+                    <p style="color: #666; margin-bottom: 2rem;">คุ้มที่สุด!</p>
+                    <ul class="product-features" style="text-align: left;">
+                        <li>ระบบทั้งหมด 10 ชิ้น</li>
+                        <li>Documentation + Source</li>
+                        <li>Private Tutorial</li>
+                        <li>Support ตลอดชีพ</li>
+                        <li>Update ตลอดชีพ</li>
+                        <li>Priority Support</li>
+                        <li>Custom Request 1 ครั้ง</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary" style="width: 100%; margin-top: 2rem;">เลือกแพ็กนี้</a>
+                </div>
+
+                <div class="pricing-card">
+                    <h3>Subscription</h3>
+                    <div class="product-price">฿399<span style="font-size: 1rem;">/เดือน</span></div>
+                    <p style="color: #666; margin-bottom: 2rem;">ยืดหยุ่นที่สุด</p>
+                    <ul class="product-features" style="text-align: left;">
+                        <li>เข้าถึงทุกระบบ</li>
+                        <li>ระบบใหม่ทุกเดือน</li>
+                        <li>Update Real-time</li>
+                        <li>Priority Support</li>
+                        <li>ยกเลิกได้ทุกเมื่อ</li>
+                        <li>Discord Community</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary" style="width: 100%; margin-top: 2rem;">เลือกแพ็กนี้</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">ลูกค้าพูดถึงเรา</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p>"ประหยัดเวลาได้มากมาย! เกมที่ควรใช้เวลาพัฒนา 3 เดือน ตอนนี้ทำเสร็จใน 2 สัปดาห์"</p>
+                    <div class="testimonial-author">- DevMaster_TH</div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"โค้ดเขียนดี ปรับแต่งง่าย Documentation ครบ Support ตอบเร็วมาก แนะนำเลยครับ"</p>
+                    <div class="testimonial-author">- RobloxPro2024</div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"คุ้มค่ามากๆ ซื้อแพ็ก Pro มา ได้ระบบครบ ทำเกมเสร็จไวกว่าเดิมเยอะ"</p>
+                    <div class="testimonial-author">- GameCreator99</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="cta-section">
+        <div class="container">
+            <h2>พร้อมเริ่มสร้างเกมแล้วหรือยัง?</h2>
+            <p>ติดต่อเราเพื่อสั่งซื้อหรือสอบถามข้อมูลเพิ่มเติม</p>
+            
+            <div class="contact-form">
+                <form id="orderForm">
+                    <div class="form-group">
+                        <label for="name">ชื่อ-นามสกุล *</label>
