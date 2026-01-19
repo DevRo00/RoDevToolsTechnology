@@ -25,10 +25,11 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.7;
+            line-height: 1.6;
             color: var(--dark-gray);
             background: var(--white);
             overflow-x: hidden;
+            font-size: 15px;
         }
 
         /* Header & Navigation */
@@ -53,29 +54,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
-        .lang-switcher {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .lang-btn {
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: var(--white);
-            padding: 0.3rem 0.8rem;
-            border-radius: 3px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: all 0.3s;
-        }
-
-        .lang-btn:hover,
-        .lang-btn.active {
-            background: var(--white);
-            color: var(--primary-blue);
-            border-color: var(--white);
         }
 
         nav {
@@ -112,7 +90,7 @@
             color: var(--dark-gray);
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.95rem;
+            font-size: 0.875rem;
             transition: color 0.3s;
             position: relative;
         }
@@ -134,6 +112,109 @@
 
         .nav-links a:hover::after {
             width: 100%;
+        }
+
+        .nav-cta {
+            color: var(--dark-gray) !important;
+            background: transparent !important;
+            padding: 0 !important;
+            border-radius: 0 !important;
+            font-weight: 500 !important;
+        }
+
+        .nav-cta:hover {
+            color: var(--primary-blue) !important;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        /* Language Dropdown (แบบ Wix) */
+        .lang-switcher {
+            position: relative;
+            margin-left: 1.5rem;
+        }
+
+        .lang-dropdown-btn {
+            background: transparent;
+            border: none;
+            color: var(--dark-gray);
+            padding: 0.5rem 0.8rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .lang-dropdown-btn:hover {
+            color: var(--primary-blue);
+        }
+
+        .lang-icon {
+            font-size: 1.1rem;
+        }
+
+        .dropdown-arrow {
+            font-size: 0.7rem;
+            transition: transform 0.3s;
+        }
+
+        .lang-dropdown-btn.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .lang-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--white);
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            min-width: 150px;
+            margin-top: 0.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .lang-dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-option {
+            padding: 0.8rem 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.875rem;
+            color: var(--dark-gray);
+        }
+
+        .lang-option:hover {
+            background: #f5f7fa;
+        }
+
+        .lang-option.active {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        .lang-option:first-child {
+            border-radius: 5px 5px 0 0;
+        }
+
+        .lang-option:last-child {
+            border-radius: 0 0 5px 5px;
         }
 
         .nav-cta {
@@ -196,7 +277,7 @@
         }
 
         .hero-text h1 {
-            font-size: 3.5rem;
+            font-size: 3rem;
             font-weight: 700;
             line-height: 1.2;
             margin-bottom: 1.5rem;
@@ -204,7 +285,7 @@
         }
 
         .hero-text p {
-            font-size: 1.3rem;
+            font-size: 1.125rem;
             margin-bottom: 2.5rem;
             opacity: 0.95;
             line-height: 1.6;
@@ -271,7 +352,7 @@
         }
 
         .section-title {
-            font-size: 2.5rem;
+            font-size: 2.25rem;
             font-weight: 700;
             color: var(--dark-gray);
             margin-bottom: 1rem;
@@ -279,7 +360,7 @@
         }
 
         .section-subtitle {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--medium-gray);
             max-width: 700px;
             margin: 0 auto;
@@ -324,7 +405,7 @@
         }
 
         .feature-card h3 {
-            font-size: 1.3rem;
+            font-size: 1.125rem;
             margin-bottom: 1rem;
             color: var(--dark-gray);
             font-weight: 600;
@@ -332,7 +413,8 @@
 
         .feature-card p {
             color: var(--medium-gray);
-            line-height: 1.7;
+            line-height: 1.6;
+            font-size: 0.9375rem;
         }
 
         /* Products Section */
@@ -786,6 +868,10 @@
                 display: none;
             }
 
+            .lang-switcher {
+                margin-left: auto;
+            }
+
             .hero-text h1 {
                 font-size: 2.5rem;
             }
@@ -822,9 +908,8 @@
                 <span>📧 contact@rodevtools.com</span>
                 <span>📱 +66 (0) 2-XXX-XXXX</span>
             </div>
-            <div class="lang-switcher">
-                <button class="lang-btn active" onclick="changeLanguage('th')">ไทย</button>
-                <button class="lang-btn" onclick="changeLanguage('en')">English</button>
+            <div style="opacity: 0.7; font-size: 0.85rem;">
+                Professional Roblox Development Solutions
             </div>
         </div>
     </div>
@@ -841,7 +926,26 @@
                     <a href="#products" data-translate="nav_products">Products</a>
                     <a href="#how-it-works" data-translate="nav_howto">How It Works</a>
                     <a href="#pricing" data-translate="nav_pricing">Pricing</a>
-                    <a href="#contact" class="nav-cta" data-translate="nav_contact">Contact Us</a>
+                    <a href="#contact" data-translate="nav_contact">Contact Us</a>
+                    
+                    <!-- Language Dropdown (แบบ Wix) -->
+                    <div class="lang-switcher">
+                        <button class="lang-dropdown-btn" onclick="toggleLanguageDropdown()">
+                            <span class="lang-icon" id="currentLangIcon">🇹🇭</span>
+                            <span id="currentLangText">ไทย</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </button>
+                        <div class="lang-dropdown-menu" id="langDropdown">
+                            <div class="lang-option active" onclick="selectLanguage('th', '🇹🇭', 'ไทย')">
+                                <span class="lang-icon">🇹🇭</span>
+                                <span>ไทย</span>
+                            </div>
+                            <div class="lang-option" onclick="selectLanguage('en', '🇬🇧', 'English')">
+                                <span class="lang-icon">🇬🇧</span>
+                                <span>English</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -1513,17 +1617,32 @@ return AdminSystem
             }
         };
 
-        // Language Switching Function
         let currentLanguage = 'th';
 
-        function changeLanguage(lang) {
+        // Language Dropdown Functions
+        function toggleLanguageDropdown() {
+            const dropdown = document.getElementById('langDropdown');
+            const btn = document.querySelector('.lang-dropdown-btn');
+            dropdown.classList.toggle('show');
+            btn.classList.toggle('active');
+        }
+
+        function selectLanguage(lang, icon, text) {
             currentLanguage = lang;
             
-            // Update button active state
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
+            // Update dropdown button
+            document.getElementById('currentLangIcon').textContent = icon;
+            document.getElementById('currentLangText').textContent = text;
+            
+            // Update active state in dropdown
+            document.querySelectorAll('.lang-option').forEach(opt => {
+                opt.classList.remove('active');
             });
-            event.target.classList.add('active');
+            event.target.closest('.lang-option').classList.add('active');
+            
+            // Close dropdown
+            document.getElementById('langDropdown').classList.remove('show');
+            document.querySelector('.lang-dropdown-btn').classList.remove('active');
             
             // Update all translated elements
             document.querySelectorAll('[data-translate]').forEach(element => {
@@ -1539,14 +1658,51 @@ return AdminSystem
             
             // Save preference
             localStorage.setItem('preferred-language', lang);
+            localStorage.setItem('preferred-lang-icon', icon);
+            localStorage.setItem('preferred-lang-text', text);
         }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const langSwitcher = document.querySelector('.lang-switcher');
+            if (langSwitcher && !langSwitcher.contains(event.target)) {
+                document.getElementById('langDropdown').classList.remove('show');
+                document.querySelector('.lang-dropdown-btn').classList.remove('active');
+            }
+        });
 
         // Load saved language preference
         window.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('preferred-language') || 'th';
+            const savedIcon = localStorage.getItem('preferred-lang-icon') || '🇹🇭';
+            const savedText = localStorage.getItem('preferred-lang-text') || 'ไทย';
+            
             if (savedLang !== 'th') {
-                const langBtn = document.querySelector(`button[onclick="changeLanguage('${savedLang}')"]`);
-                if (langBtn) langBtn.click();
+                document.getElementById('currentLangIcon').textContent = savedIcon;
+                document.getElementById('currentLangText').textContent = savedText;
+                
+                // Update translations
+                document.querySelectorAll('[data-translate]').forEach(element => {
+                    const key = element.getAttribute('data-translate');
+                    if (translations[savedLang][key]) {
+                        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                            element.placeholder = translations[savedLang][key];
+                        } else {
+                            element.innerHTML = translations[savedLang][key];
+                        }
+                    }
+                });
+                
+                // Update active state
+                document.querySelectorAll('.lang-option').forEach(opt => {
+                    opt.classList.remove('active');
+                });
+                const activeLangOption = savedLang === 'en' ? 
+                    document.querySelectorAll('.lang-option')[1] : 
+                    document.querySelectorAll('.lang-option')[0];
+                if (activeLangOption) {
+                    activeLangOption.classList.add('active');
+                }
             }
             
             // Form submission handler
