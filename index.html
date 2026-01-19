@@ -1,0 +1,132 @@
+พูดถึงเรา</h2>
+<div class="testimonial-grid">
+<div class="testimonial-card">
+<p>"ประหยัดเวลาได้มากมาย! เกมที่ควรใช้เวลาพัฒนา 3 เดือน ตอนนี้ทำเสร็จใน 2 สัปดาห์"</p>
+<div class="testimonial-author">- DevMaster_TH</div>
+</div>
+<div class="testimonial-card">
+<p>"โค้ดเขียนดี ปรับแต่งง่าย Documentation ครบ Support ตอบเร็วมาก แนะนำเลยครับ"</p>
+<div class="testimonial-author">- RobloxPro2024</div>
+</div>
+<div class="testimonial-card">
+<p>"คุ้มค่ามากๆ ซื้อแพ็ก Pro มา ได้ระบบครบ ทำเกมเสร็จไวกว่าเดิมเยอะ"</p>
+<div class="testimonial-author">- GameCreator99</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact/Order Section -->
+<section id="contact" class="cta-section">
+    <div class="container">
+        <h2>พร้อมเริ่มสร้างเกมแล้วหรือยัง?</h2>
+        <p>ติดต่อเราเพื่อสั่งซื้อหรือสอบถามข้อมูลเพิ่มเติม</p>
+        
+        <div class="contact-form">
+            <form id="orderForm">
+                <div class="form-group">
+                    <label for="name">ชื่อ-นามสกุล *</label>
+                    <input type="text" id="name" name="name" required placeholder="กรอกชื่อของคุณ">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required placeholder="example@email.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="discord">Discord Username</label>
+                    <input type="text" id="discord" name="discord" placeholder="username#1234">
+                </div>
+                
+                <div class="form-group">
+                    <label for="package">แพ็กเกจที่สนใจ *</label>
+                    <select id="package" name="package" required>
+                        <option value="">-- เลือกแพ็กเกจ --</option>
+                        <option value="starter">Starter Pack - ฿1,499</option>
+                        <option value="pro">Pro Pack - ฿2,999 (แนะนำ)</option>
+                        <option value="subscription">Subscription - ฿399/เดือน</option>
+                        <option value="single">ซื้อระบบเดี่ยว</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">ข้อความเพิ่มเติม</label>
+                    <textarea id="message" name="message" placeholder="บอกเราว่าคุณต้องการอะไร..."></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.2rem;">ส่งคำสั่งซื้อ</button>
+            </form>
+            
+            <div style="margin-top: 2rem; text-align: center; color: #666;">
+                <p><strong>หรือติดต่อเราโดยตรง:</strong></p>
+                <p>📧 Email: contact@rodevtools.com</p>
+                <p>💬 Discord: discord.gg/rodevtools</p>
+                <p>📱 Line: @rodevtools</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-links">
+            <a href="#features">ฟีเจอร์</a>
+            <a href="#products">ผลิตภัณฑ์</a>
+            <a href="#pricing">ราคา</a>
+            <a href="#testimonials">รีวิว</a>
+            <a href="#contact">ติดต่อ</a>
+        </div>
+        
+        <div class="social-links">
+            <a href="#" title="Discord">💬</a>
+            <a href="#" title="YouTube">📺</a>
+            <a href="#" title="Twitter">🐦</a>
+            <a href="#" title="GitHub">💻</a>
+        </div>
+        
+        <p style="margin-top: 2rem; opacity: 0.7;">
+            © 2025 RoDevTools. All rights reserved.<br>
+            ระบบคุณภาพสูงสำหรับนักพัฒนา Roblox
+        </p>
+    </div>
+</footer>
+
+<script>
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    // Form submission
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            discord: document.getElementById('discord').value,
+            package: document.getElementById('package').value,
+            message: document.getElementById('message').value
+        };
+        
+        // แสดงข้อความยืนยัน
+        alert('ขอบคุณสำหรับความสนใจ! เราจะติดต่อกลับภายใน 24 ชั่วโมง\n\nข้อมูลของคุณ:\n' + 
+              'ชื่อ: ' + formData.name + '\n' +
+              'Email: ' + formData.email + '\n' +
+              'แพ็กเกจ: ' + formData.package);
+        
+        // Reset form
+        this.reset();
+        
+        // TODO: ในอนาคตจะเชื่อมต่อกับระบบรับคำสั่งซื้อจริง
+    });
+</script>
+</body>
+</html>
