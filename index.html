@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RoDevTools - ระบบเกมสำเร็จรูปสำหรับนักพัฒนา Roblox</title>
-    <meta name="description" content="ระบบและฟีเจอร์สำเร็จรูปคุณภาพสูงสำหรับนักพัฒนา Roblox ประหยัดเวลากว่า 100+ ชั่วโมง">
+    <title>RoDevTools - Professional Roblox Development Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,27 +12,80 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-blue: #003d82;
+            --secondary-blue: #0056b3;
+            --light-blue: #e6f2ff;
+            --dark-gray: #1a1a1a;
+            --medium-gray: #666;
+            --light-gray: #f5f7fa;
+            --white: #ffffff;
+            --accent-red: #e31e24;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--dark-gray);
+            background: var(--white);
             overflow-x: hidden;
         }
 
+        /* Header & Navigation */
         header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
+            background: var(--white);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .header-top {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 0.5rem 0;
+            font-size: 0.85rem;
+        }
+
+        .header-top .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .lang-switcher {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: var(--white);
+            padding: 0.3rem 0.8rem;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+
+        .lang-btn:hover,
+        .lang-btn.active {
+            background: var(--white);
+            color: var(--primary-blue);
+            border-color: var(--white);
         }
 
         nav {
-            max-width: 1200px;
+            padding: 1.2rem 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
             margin: 0 auto;
+            padding: 0 3rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -40,272 +93,312 @@
 
         .logo {
             font-size: 1.8rem;
-            font-weight: bold;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            color: var(--primary-blue);
+            letter-spacing: -0.5px;
         }
 
-        .nav-center {
+        .logo span {
+            color: var(--accent-red);
+        }
+
+        .nav-links {
             display: flex;
-            gap: 2rem;
-        }
-
-        .nav-center a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-
-        .nav-center a:hover {
-            color: #667eea;
-        }
-
-        .lang-switcher {
-            display: flex;
-            gap: 0.5rem;
+            gap: 3rem;
             align-items: center;
         }
 
-        .lang-btn {
-            padding: 0.5rem 1rem;
-            border: 2px solid #667eea;
-            background: transparent;
-            color: #667eea;
-            border-radius: 20px;
-            cursor: pointer;
+        .nav-links a {
+            color: var(--dark-gray);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border-radius: 3px;
             font-weight: 600;
             transition: all 0.3s;
-            font-size: 0.9rem;
         }
 
-        .lang-btn.active {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-        }
-
-        .lang-btn:hover {
+        .nav-cta:hover {
+            background: var(--secondary-blue);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 61, 130, 0.3);
         }
 
+        .nav-cta::after {
+            display: none;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+
+        /* Hero Section */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 8rem 2rem 4rem;
+            margin-top: 110px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: var(--white);
+            padding: 8rem 0 6rem;
             position: relative;
+            overflow: hidden;
         }
 
         .hero::before {
             content: '';
             position: absolute;
-            width: 300px;
-            height: 300px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            top: 10%;
-            right: 10%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            bottom: 15%;
-            left: 15%;
-            animation: float 8s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+            top: 0;
+            right: -20%;
+            width: 50%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            transform: skewX(-15deg);
         }
 
         .hero-content {
-            max-width: 800px;
-            color: white;
-            animation: fadeInUp 1s ease;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
             position: relative;
             z-index: 1;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero h1 {
+        .hero-text h1 {
             font-size: 3.5rem;
-            margin-bottom: 1.5rem;
+            font-weight: 700;
             line-height: 1.2;
-            text-shadow: 2px 2px 20px rgba(0,0,0,0.3);
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
         }
 
-        .hero p {
+        .hero-text p {
             font-size: 1.3rem;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             opacity: 0.95;
+            line-height: 1.6;
         }
 
-        .cta-buttons {
+        .hero-stats {
             display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
+            gap: 3rem;
+            margin-top: 3rem;
         }
 
-        .btn {
-            padding: 1rem 2.5rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
+        .stat-item {
+            text-align: left;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .hero-visual {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .code-snippet {
+            background: var(--dark-gray);
+            color: #0f0;
+            padding: 2rem;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            color: var(--primary-blue);
             font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-primary {
-            background: white;
-            color: #667eea;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .btn-secondary:hover {
-            background: white;
-            color: #667eea;
-        }
-
-        .features {
-            background: white;
-            padding: 6rem 2rem;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
         }
 
         .section-title {
-            text-align: center;
             font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark-gray);
             margin-bottom: 1rem;
-            color: #333;
+            letter-spacing: -0.5px;
         }
 
         .section-subtitle {
-            text-align: center;
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            color: var(--medium-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Features Grid */
+        .features {
+            background: var(--light-gray);
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            margin-top: 3rem;
         }
 
         .feature-card {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 2.5rem;
-            border-radius: 20px;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
+            background: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+            border: 1px solid #e0e0e0;
         }
 
         .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-blue);
         }
 
         .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            width: 60px;
+            height: 60px;
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
         }
 
         .feature-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             margin-bottom: 1rem;
-            color: #333;
+            color: var(--dark-gray);
+            font-weight: 600;
         }
 
         .feature-card p {
-            color: #666;
-            line-height: 1.6;
+            color: var(--medium-gray);
+            line-height: 1.7;
         }
 
-        .products {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 6rem 2rem;
-        }
-
+        /* Products Section */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            margin-top: 3rem;
         }
 
         .product-card {
-            background: white;
-            border-radius: 20px;
+            background: var(--white);
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            transition: all 0.3s;
         }
 
         .product-card:hover {
-            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
         }
 
-        .product-header {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
+        .product-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--white);
+        }
+
+        .product-content {
             padding: 2rem;
-            text-align: center;
         }
 
-        .product-header h3 {
-            font-size: 1.8rem;
+        .product-badge {
+            display: inline-block;
+            background: var(--accent-red);
+            color: var(--white);
+            padding: 0.3rem 0.8rem;
+            border-radius: 3px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .product-title {
+            font-size: 1.5rem;
+            font-weight: 600;
             margin-bottom: 0.5rem;
+            color: var(--dark-gray);
         }
 
         .product-price {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin: 1rem 0;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
         }
 
-        .product-body {
-            padding: 2rem;
+        .product-description {
+            color: var(--medium-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
         }
 
         .product-features {
@@ -314,307 +407,265 @@
         }
 
         .product-features li {
-            padding: 0.8rem 0;
-            border-bottom: 1px solid #eee;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            color: var(--medium-gray);
+            font-size: 0.95rem;
         }
 
-        .product-features li:before {
-            content: "✓ ";
-            color: #667eea;
+        .product-features li::before {
+            content: '✓';
+            color: var(--primary-blue);
             font-weight: bold;
             margin-right: 0.5rem;
         }
 
-        .product-description {
-            background: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: #555;
+        /* CTA Buttons */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 3px;
+            transition: all 0.3s;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
         }
 
-        .pricing {
-            background: white;
-            padding: 6rem 2rem;
+        .btn-primary {
+            background: var(--primary-blue);
+            color: var(--white);
         }
 
-        .pricing-cards {
+        .btn-primary:hover {
+            background: var(--secondary-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 61, 130, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .btn-full {
+            width: 100%;
+            text-align: center;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background: var(--light-gray);
+        }
+
+        .steps {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 2rem;
-            margin-top: 3rem;
+            position: relative;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-blue);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+        }
+
+        .step h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--dark-gray);
+            font-weight: 600;
+        }
+
+        .step p {
+            color: var(--medium-gray);
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .pricing-card {
-            background: white;
-            border: 3px solid #eee;
-            border-radius: 20px;
+            background: var(--white);
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
             padding: 3rem 2rem;
             text-align: center;
             transition: all 0.3s;
         }
 
         .pricing-card.featured {
-            border-color: #667eea;
+            border-color: var(--primary-blue);
             transform: scale(1.05);
-            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 15px 40px rgba(0, 61, 130, 0.15);
         }
 
         .pricing-card:hover {
-            border-color: #667eea;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            border-color: var(--primary-blue);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .pricing-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 30px;
-            font-size: 0.9rem;
+            background: var(--accent-red);
+            color: var(--white);
+            padding: 0.4rem 1rem;
+            border-radius: 3px;
+            font-size: 0.85rem;
+            font-weight: 600;
             margin-bottom: 1rem;
+            display: inline-block;
         }
 
+        .pricing-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--dark-gray);
+        }
+
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-period {
+            color: var(--medium-gray);
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            color: var(--medium-gray);
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--primary-blue);
+            font-weight: bold;
+            margin-right: 0.8rem;
+        }
+
+        /* Testimonials */
         .testimonials {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 6rem 2rem;
-            color: white;
+            background: var(--primary-blue);
+            color: var(--white);
         }
 
-        .testimonial-grid {
+        .testimonials .section-label,
+        .testimonials .section-title,
+        .testimonials .section-subtitle {
+            color: var(--white);
+        }
+
+        .testimonials-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            margin-top: 3rem;
         }
 
         .testimonial-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 20px;
+            padding: 2.5rem;
+            border-radius: 5px;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .testimonial-card p {
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
             font-style: italic;
-            margin-bottom: 1rem;
-            line-height: 1.6;
         }
 
         .testimonial-author {
-            font-weight: bold;
-            text-align: right;
+            font-weight: 600;
+            font-size: 1rem;
         }
 
-        .how-it-works {
-            background: white;
-            padding: 6rem 2rem;
+        .testimonial-role {
+            font-size: 0.9rem;
+            opacity: 0.8;
         }
 
-        .steps-grid {
+        /* Contact Section */
+        .contact {
+            background: var(--light-gray);
+        }
+
+        .contact-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-top: 4rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .step-card {
-            text-align: center;
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-gray);
         }
 
-        .step-number {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-blue);
+            color: var(--white);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            font-weight: bold;
-            margin: 0 auto 1.5rem;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-        }
-
-        .step-card h3 {
             font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: #333;
-        }
-
-        .step-card p {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        .faq-section {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 6rem 2rem;
-        }
-
-        .faq-container {
-            max-width: 800px;
-            margin: 3rem auto;
-        }
-
-        .faq-item {
-            background: white;
-            border-radius: 10px;
-            margin-bottom: 1rem;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .faq-question {
-            padding: 1.5rem;
-            font-weight: 600;
-            color: #333;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: background 0.3s;
-        }
-
-        .faq-question:hover {
-            background: #f8f9fa;
-        }
-
-        .faq-answer {
-            padding: 0 1.5rem 1.5rem;
-            color: #666;
-            line-height: 1.6;
-            display: none;
-        }
-
-        .faq-item.active .faq-answer {
-            display: block;
-        }
-
-        .faq-icon {
-            font-size: 1.5rem;
-            transition: transform 0.3s;
-        }
-
-        .faq-item.active .faq-icon {
-            transform: rotate(45deg);
-        }
-
-        .cta-section {
-            background: white;
-            padding: 6rem 2rem;
-            text-align: center;
-        }
-
-        .cta-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: #333;
-        }
-
-        .cta-section p {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 2rem;
-        }
-
-        footer {
-            background: #1a1a2e;
-            color: white;
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: #667eea;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            transition: color 0.3s;
-        }
-
-        .social-links a:hover {
-            color: #667eea;
-        }
-
-        .stats-container {
-            display: flex;
-            justify-content: center;
-            gap: 4rem;
-            flex-wrap: wrap;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: bold;
-            color: white;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .code-preview {
-            background: #1e1e1e;
-            color: #d4d4d4;
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin: 2rem 0;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-            overflow-x: auto;
-            position: relative;
-        }
-
-        .code-preview::before {
-            content: 'Lua';
-            position: absolute;
-            top: 0.5rem;
-            right: 0.5rem;
-            background: #667eea;
-            padding: 0.3rem 0.8rem;
-            border-radius: 5px;
-            font-size: 0.75rem;
-            color: white;
         }
 
         .contact-form {
-            max-width: 600px;
-            margin: 3rem auto;
-            background: white;
+            background: var(--white);
             padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
         }
 
         .form-group {
@@ -625,17 +676,18 @@
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 600;
-            color: #333;
+            color: var(--dark-gray);
         }
 
         .form-group input,
         .form-group textarea,
         .form-group select {
             width: 100%;
-            padding: 1rem;
-            border: 2px solid #eee;
-            border-radius: 10px;
+            padding: 0.8rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 3px;
             font-size: 1rem;
+            font-family: inherit;
             transition: border-color 0.3s;
         }
 
@@ -643,7 +695,7 @@
         .form-group textarea:focus,
         .form-group select:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: var(--primary-blue);
         }
 
         .form-group textarea {
@@ -651,554 +703,873 @@
             min-height: 120px;
         }
 
-        .badge {
-            display: inline-block;
-            background: #667eea;
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            margin-left: 0.5rem;
+        /* Footer */
+        footer {
+            background: var(--dark-gray);
+            color: var(--white);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-about h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-about p {
+            line-height: 1.7;
+            opacity: 0.8;
+        }
+
+        .footer-section h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid,
+            .products-grid,
+            .testimonials-grid,
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .nav-center {
+            .nav-links {
                 display: none;
             }
-            
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .features-grid,
+            .products-grid,
+            .testimonials-grid,
+            .pricing-grid,
+            .steps,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
             .pricing-card.featured {
                 transform: scale(1);
             }
 
-            .stats-container {
-                gap: 2rem;
+            .container,
+            .nav-container {
+                padding: 0 1.5rem;
             }
-        }
 
-        /* Language switcher in mobile */
-        @media (max-width: 768px) {
-            nav {
-                justify-content: space-between;
+            .hero-content {
+                padding: 0 1.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">🎮 RoDevTools</div>
-            <div class="nav-center">
-                <a href="#features" data-translate="nav_features">ฟีเจอร์</a>
-                <a href="#products" data-translate="nav_products">ผลิตภัณฑ์</a>
-                <a href="#how-it-works" data-translate="nav_howto">วิธีใช้งาน</a>
-                <a href="#pricing" data-translate="nav_pricing">ราคา</a>
-                <a href="#faq">FAQ</a>
-                <a href="#contact" data-translate="nav_contact">ติดต่อ</a>
+    <!-- Header Top Bar -->
+    <div class="header-top">
+        <div class="container">
+            <div style="display: flex; gap: 2rem;">
+                <span>📧 contact@rodevtools.com</span>
+                <span>📱 +66 (0) 2-XXX-XXXX</span>
             </div>
             <div class="lang-switcher">
-                <button class="lang-btn active" onclick="changeLanguage('th')">🇹🇭 TH</button>
-                <button class="lang-btn" onclick="changeLanguage('en')">🇬🇧 EN</button>
+                <button class="lang-btn active" onclick="changeLanguage('th')">ไทย</button>
+                <button class="lang-btn" onclick="changeLanguage('en')">English</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header>
+        <nav>
+            <div class="nav-container">
+                <div class="logo">
+                    Ro<span>Dev</span>Tools
+                </div>
+                <div class="nav-links">
+                    <a href="#features" data-translate="nav_features">Features</a>
+                    <a href="#products" data-translate="nav_products">Products</a>
+                    <a href="#how-it-works" data-translate="nav_howto">How It Works</a>
+                    <a href="#pricing" data-translate="nav_pricing">Pricing</a>
+                    <a href="#contact" class="nav-cta" data-translate="nav_contact">Contact Us</a>
+                </div>
             </div>
         </nav>
     </header>
 
+    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1 data-translate="hero_title">🚀 สร้างเกม Roblox ได้ภายใน 1 วัน</h1>
-            <p data-translate="hero_subtitle">ระบบและฟีเจอร์สำเร็จรูปคุณภาพสูง พร้อมใช้งานทันที<br>ประหยัดเวลากว่า 100+ ชั่วโมงในการพัฒนา</p>
-            <div class="cta-buttons">
-                <a href="#contact" class="btn btn-primary" data-translate="hero_cta1">ติดต่อซื้อเลย</a>
-                <a href="#products" class="btn btn-secondary" data-translate="hero_cta2">ดูผลิตภัณฑ์</a>
+            <div class="hero-text">
+                <h1 data-translate="hero_title">Professional Roblox Development Solutions</h1>
+                <p data-translate="hero_subtitle">High-quality, ready-to-use systems and features for Roblox developers. Save 100+ hours of development time.</p>
+                <div style="display: flex; gap: 1rem;">
+                    <a href="#products" class="btn btn-primary" data-translate="hero_cta1">Explore Solutions</a>
+                    <a href="#contact" class="btn btn-secondary" data-translate="hero_cta2">Request Demo</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label" data-translate="stat_developers">Developers</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label" data-translate="stat_systems">Systems</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label" data-translate="stat_support">Support</span>
+                    </div>
+                </div>
             </div>
-            <div class="stats-container">
-                <div class="stat-item">
-                    <span class="stat-number" data-target="500">500+</span>
-                    <div data-translate="stat_developers">นักพัฒนาใช้งาน</div>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" data-target="50">50+</span>
-                    <div data-translate="stat_systems">ระบบพร้อมใช้</div>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">24/7</span>
-                    <div data-translate="stat_support">ซัพพอร์ต</div>
+            <div class="hero-visual">
+                <div class="code-snippet">
+-- Admin System Example<br>
+local AdminSystem = {}<br>
+<br>
+function AdminSystem:Initialize()<br>
+&nbsp;&nbsp;self:LoadCommands()<br>
+&nbsp;&nbsp;self:SetupPermissions()<br>
+&nbsp;&nbsp;print("✓ System Ready")<br>
+end<br>
+<br>
+return AdminSystem
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Features Section -->
     <section id="features" class="features">
         <div class="container">
-            <h2 class="section-title" data-translate="features_title">ทำไมต้องเลือกเรา?</h2>
-            <p class="section-subtitle" data-translate="features_subtitle">ระบบคุณภาพสูง ใช้งานง่าย เหมาะกับทั้งมือใหม่และมืออาชีพ</p>
+            <div class="section-header">
+                <div class="section-label" data-translate="features_label">WHY CHOOSE US</div>
+                <h2 class="section-title" data-translate="features_title">Enterprise-Grade Solutions</h2>
+                <p class="section-subtitle" data-translate="features_subtitle">Professional systems designed for reliability, scalability, and ease of use</p>
+            </div>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">⚡</div>
-                    <h3 data-translate="feature1_title">ติดตั้งง่าย ใช้ได้ทันที</h3>
-                    <p data-translate="feature1_desc">Copy-Paste เข้าโปรเจค ใช้เวลาไม่เกิน 5 นาที พร้อม Documentation ครบถ้วนทุกขั้นตอน</p>
+                    <h3 data-translate="feature1_title">Easy Integration</h3>
+                    <p data-translate="feature1_desc">Plug-and-play systems that integrate seamlessly into your Roblox project within minutes. Complete documentation included.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🎨</div>
-                    <h3 data-translate="feature2_title">ปรับแต่งได้ 100%</h3>
-                    <p data-translate="feature2_desc">โค้ดเขียนแบบโมดูลาร์ แก้ไขง่าย ปรับให้เข้ากับเกมของคุณได้ทุกแบบ</p>
+                    <h3 data-translate="feature2_title">Fully Customizable</h3>
+                    <p data-translate="feature2_desc">Modular architecture allows complete customization to match your game's unique requirements and branding.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🔒</div>
-                    <h3 data-translate="feature3_title">ปลอดภัย ไร้บั๊ก</h3>
-                    <p data-translate="feature3_desc">ทดสอบมาแล้วกว่า 1,000 ชั่วโมง รับประกันความเสถียร พร้อม Update ฟรี</p>
+                    <h3 data-translate="feature3_title">Production-Ready</h3>
+                    <p data-translate="feature3_desc">Tested for 1000+ hours. Enterprise-grade reliability with built-in error handling and security features.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📚</div>
-                    <h3 data-translate="feature4_title">คู่มือครบถ้วน</h3>
-                    <p data-translate="feature4_desc">มี Video Tutorial, Documentation และตัวอย่างโค้ดให้ศึกษา</p>
+                    <h3 data-translate="feature4_title">Complete Documentation</h3>
+                    <p data-translate="feature4_desc">Comprehensive guides, video tutorials, and code examples to get you started quickly.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">💬</div>
-                    <h3 data-translate="feature5_title">Support 24/7</h3>
-                    <p data-translate="feature5_desc">ทีมงานพร้อมช่วยเหลือตลอด 24 ชม. ผ่าน Discord และ Email</p>
+                    <h3 data-translate="feature5_title">24/7 Support</h3>
+                    <p data-translate="feature5_desc">Professional support team available around the clock via Discord, Email, and LINE.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🎁</div>
-                    <h3 data-translate="feature6_title">Update ตลอดชีพ</h3>
-                    <p data-translate="feature6_desc">รับ Update ฟีเจอร์ใหม่ๆ และ Bug Fixes ฟรีตลอดไป</p>
+                    <div class="feature-icon">🔄</div>
+                    <h3 data-translate="feature6_title">Lifetime Updates</h3>
+                    <p data-translate="feature6_desc">Free updates, new features, and security patches for the lifetime of your license.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Products Section -->
     <section id="products" class="products">
         <div class="container">
-            <h2 class="section-title" data-translate="products_title">ระบบยอดนิยม</h2>
-            <p class="section-subtitle" data-translate="products_subtitle">ระบบคุณภาพสูงที่ใช้งานจริงในเกมดังมากมาย</p>
+            <div class="section-header">
+                <div class="section-label" data-translate="products_label">OUR SOLUTIONS</div>
+                <h2 class="section-title" data-translate="products_title">Premium Development Systems</h2>
+                <p class="section-subtitle" data-translate="products_subtitle">Battle-tested solutions used by top Roblox developers worldwide</p>
+            </div>
             <div class="products-grid">
                 <div class="product-card">
-                    <div class="product-header">
-                        <h3>Admin System <span class="badge" data-translate="badge_bestseller">ขายดี #1</span></h3>
+                    <div class="product-image">🛡️</div>
+                    <div class="product-content">
+                        <span class="product-badge" data-translate="badge_bestseller">BEST SELLER</span>
+                        <h3 class="product-title">Admin System Pro</h3>
                         <div class="product-price">฿499</div>
-                        <p data-translate="product1_tagline">ระบบจัดการผู้เล่น</p>
-                    </div>
-                    <div class="product-body">
-                        <div class="product-description" data-translate="product1_desc">
-                            ระบบ Admin ครบครัน รองรับคำสั่งกว่า 30+ แบบ มีระบบสิทธิ์หลายระดับ
-                        </div>
+                        <p class="product-description" data-translate="product1_desc">Comprehensive admin system with 30+ commands, multi-level permissions, and custom GUI panel.</p>
                         <ul class="product-features">
-                            <li data-translate="product1_feat1">คำสั่งกว่า 30+ Commands</li>
-                            <li data-translate="product1_feat2">ระบบสิทธิ์หลายระดับ</li>
+                            <li data-translate="product1_feat1">30+ Admin Commands</li>
+                            <li data-translate="product1_feat2">Multi-level Permissions</li>
                             <li data-translate="product1_feat3">GUI Admin Panel</li>
                             <li data-translate="product1_feat4">Ban/Kick System</li>
-                            <li data-translate="product1_feat5">Custom Notifications</li>
+                            <li data-translate="product1_feat5">Command History Logs</li>
                         </ul>
-                        <a href="#contact" class="btn btn-primary" style="width: 100%;" data-translate="btn_interested">สนใจซื้อ</a>
+                        <a href="#contact" class="btn btn-primary btn-full" data-translate="btn_learn">Learn More</a>
                     </div>
                 </div>
 
                 <div class="product-card">
-                    <div class="product-header">
-                        <h3>Datastore Pro</h3>
+                    <div class="product-image">💾</div>
+                    <div class="product-content">
+                        <h3 class="product-title">Datastore Pro</h3>
                         <div class="product-price">฿699</div>
-                        <p data-translate="product2_tagline">บันทึกข้อมูลอัตโนมัติ</p>
-                    </div>
-                    <div class="product-body">
-                        <div class="product-description" data-translate="product2_desc">
-                            ระบบบันทึกข้อมูลที่มีประสิทธิภาพสูง รองรับข้อมูลจำนวนมาก
-                        </div>
+                        <p class="product-description" data-translate="product2_desc">High-performance data management system with auto-save, backup, and migration tools.</p>
                         <ul class="product-features">
-                            <li data-translate="product2_feat1">Auto-save ทุก 5 นาที</li>
-                            <li data-translate="product2_feat2">รองรับข้อมูลไม่จำกัด</li>
-                            <li data-translate="product2_feat3">Backup System</li>
+                            <li data-translate="product2_feat1">Auto-save Every 5 Minutes</li>
+                            <li data-translate="product2_feat2">Unlimited Data Support</li>
+                            <li data-translate="product2_feat3">Automatic Backup</li>
                             <li data-translate="product2_feat4">Error Handling</li>
-                            <li data-translate="product2_feat5">Migration Tools</li>
+                            <li data-translate="product2_feat5">Data Encryption</li>
                         </ul>
-                        <a href="#contact" class="btn btn-primary" style="width: 100%;" data-translate="btn_interested">สนใจซื้อ</a>
+                        <a href="#contact" class="btn btn-primary btn-full" data-translate="btn_learn">Learn More</a>
                     </div>
                 </div>
 
                 <div class="product-card">
-                    <div class="product-header">
-                        <h3>Shop System <span class="badge">HOT</span></h3>
+                    <div class="product-image">🛒</div>
+                    <div class="product-content">
+                        <span class="product-badge">NEW</span>
+                        <h3 class="product-title">Shop System</h3>
                         <div class="product-price">฿899</div>
-                        <p data-translate="product3_tagline">ร้านค้าในเกม</p>
-                    </div>
-                    <div class="product-body">
-                        <div class="product-description" data-translate="product3_desc">
-                            ร้านค้าในเกมที่สวยงาม รองรับทั้ง Robux และเหรียญในเกม
-                        </div>
+                        <p class="product-description" data-translate="product3_desc">Modern in-game shop with beautiful UI, supporting both Robux and in-game currency.</p>
                         <ul class="product-features">
-                            <li data-translate="product3_feat1">UI สวยงาม ทันสมัย</li>
-                            <li data-translate="product3_feat2">รองรับ Robux/เหรียญ</li>
+                            <li data-translate="product3_feat1">Modern UI Design</li>
+                            <li data-translate="product3_feat2">Robux/Currency Support</li>
                             <li data-translate="product3_feat3">Gamepass Integration</li>
-                            <li data-translate="product3_feat4">Limited Items</li>
+                            <li data-translate="product3_feat4">Limited-Time Items</li>
                             <li data-translate="product3_feat5">Sale System</li>
                         </ul>
-                        <a href="#contact" class="btn btn-primary" style="width: 100%;" data-translate="btn_interested">สนใจซื้อ</a>
+                        <a href="#contact" class="btn btn-primary btn-full" data-translate="btn_learn">Learn More</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- How It Works -->
     <section id="how-it-works" class="how-it-works">
         <div class="container">
-            <h2 class="section-title" data-translate="howto_title">วิธีการใช้งาน</h2>
-            <p class="section-subtitle" data-translate="howto_subtitle">เริ่มต้นใช้งานได้ใน 3 ขั้นตอนง่ายๆ</p>
-            <div class="steps-grid">
-                <div class="step-card">
+            <div class="section-header">
+                <div class="section-label" data-translate="howto_label">PROCESS</div>
+                <h2 class="section-title" data-translate="howto_title">How It Works</h2>
+                <p class="section-subtitle" data-translate="howto_subtitle">Get started in four simple steps</p>
+            </div>
+            <div class="steps">
+                <div class="step">
                     <div class="step-number">1</div>
-                    <h3 data-translate="step1_title">เลือกและสั่งซื้อ</h3>
-                    <p data-translate="step1_desc">เลือกระบบที่ต้องการ ชำระเงินผ่านช่องทางที่สะดวก</p>
+                    <h3 data-translate="step1_title">Choose Solution</h3>
+                    <p data-translate="step1_desc">Select the system that fits your project requirements</p>
                 </div>
-                <div class="step-card">
+                <div class="step">
                     <div class="step-number">2</div>
-                    <h3 data-translate="step2_title">รับไฟล์และคู่มือ</h3>
-                    <p data-translate="step2_desc">รับไฟล์โค้ดพร้อม Documentation และ Video Tutorial</p>
+                    <h3 data-translate="step2_title">Complete Purchase</h3>
+                    <p data-translate="step2_desc">Secure payment via multiple channels</p>
                 </div>
-                <div class="step-card">
+                <div class="step">
                     <div class="step-number">3</div>
-                    <h3 data-translate="step3_title">ติดตั้งและใช้งาน</h3>
-                    <p data-translate="step3_desc">Copy โค้ดเข้า Roblox Studio ใช้เวลาไม่เกิน 5 นาที</p>
+                    <h3 data-translate="step3_title">Download Files</h3>
+                    <p data-translate="step3_desc">Receive complete source code and documentation</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3 data-translate="step4_title">Integrate & Deploy</h3>
+                    <p data-translate="step4_desc">Install in minutes with our step-by-step guide</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Pricing -->
     <section id="pricing" class="pricing">
         <div class="container">
-            <h2 class="section-title" data-translate="pricing_title">แพ็กเกจพิเศษ</h2>
-            <p class="section-subtitle" data-translate="pricing_subtitle">เลือกแพ็กเกจที่เหมาะกับคุณ</p>
-            <div class="pricing-cards">
+            <div class="section-header">
+                <div class="section-label" data-translate="pricing_label">PRICING</div>
+                <h2 class="section-title" data-translate="pricing_title">Choose Your Plan</h2>
+                <p class="section-subtitle" data-translate="pricing_subtitle">Flexible pricing options for teams of all sizes</p>
+            </div>
+            <div class="pricing-grid">
                 <div class="pricing-card">
-                    <h3 data-translate="package1_name">Starter Pack</h3>
-                    <div class="product-price">฿1,499</div>
-                    <p style="color: #666; margin-bottom: 2rem;" data-translate="package1_tag">เหมาะกับมือใหม่</p>
-                    <ul class="product-features" style="text-align: left;">
-                        <li data-translate="package1_feat1">เลือกระบบได้ 3 ชิ้น</li>
-                        <li>Documentation</li>
-                        <li>Video Tutorial</li>
-                        <li data-translate="package1_feat4">Support 30 วัน</li>
-                        <li data-translate="package1_feat5">Update 6 เดือน</li>
+                    <div class="pricing-name" data-translate="package1_name">Starter</div>
+                    <div class="pricing-price">฿1,499</div>
+                    <div class="pricing-period" data-translate="package1_period">One-time payment</div>
+                    <ul class="pricing-features">
+                        <li data-translate="package1_feat1">Choose 3 Systems</li>
+                        <li>Full Documentation</li>
+                        <li>Video Tutorials</li>
+                        <li data-translate="package1_feat4">30 Days Support</li>
+                        <li data-translate="package1_feat5">6 Months Updates</li>
                     </ul>
-                    <a href="#contact" class="btn btn-primary" style="width: 100%; margin-top: 2rem;" data-translate="btn_choose">เลือกแพ็กนี้</a>
+                    <a href="#contact" class="btn btn-primary btn-full" data-translate="btn_select">Select Plan</a>
                 </div>
 
                 <div class="pricing-card featured">
-                    <div class="pricing-badge" data-translate="badge_popular">🔥 ยอดนิยม</div>
-                    <h3 data-translate="package2_name">Pro Pack</h3>
-                    <div class="product-price">฿2,999</div>
-                    <p style="color: #666; margin-bottom: 2rem;" data-translate="package2_tag">คุ้มที่สุด!</p>
-                    <ul class="product-features" style="text-align: left;">
-                        <li data-translate="package2_feat1">ระบบทั้งหมด 10 ชิ้น</li>
-                        <li>Documentation + Source</li>
-                        <li>Private Tutorial</li>
-                        <li data-translate="package2_feat4">Support ตลอดชีพ</li>
-                        <li data-translate="package2_feat5">Update ตลอดชีพ</li>
+                    <div class="pricing-badge" data-translate="badge_popular">MOST POPULAR</div>
+                    <div class="pricing-name" data-translate="package2_name">Professional</div>
+                    <div class="pricing-price">฿2,999</div>
+                    <div class="pricing-period" data-translate="package2_period">One-time payment</div>
+                    <ul class="pricing-features">
+                        <li data-translate="package2_feat1">All 10 Systems</li>
+                        <li>Full Source Code</li>
+                        <li>Private Training</li>
+                        <li data-translate="package2_feat4">Lifetime Support</li>
+                        <li data-translate="package2_feat5">Lifetime Updates</li>
                         <li>Priority Support</li>
-                        <li data-translate="package2_feat7">Custom Request 1 ครั้ง</li>
+                        <li data-translate="package2_feat7">1 Custom Request</li>
                     </ul>
-                    <a href="#contact" class="btn btn-primary" style="width: 100%; margin-top: 2rem;" data-translate="btn_choose">เลือกแพ็กนี้</a>
+                    <a href="#contact" class="btn btn-primary btn-full" data-translate="btn_select">Select Plan</a>
                 </div>
 
                 <div class="pricing-card">
-                    <h3 data-translate="package3_name">Subscription</h3>
-                    <div class="product-price">฿399<span style="font-size: 1rem;" data-translate="per_month">/เดือน</span></div>
-                    <p style="color: #666; margin-bottom: 2rem;" data-translate="package3_tag">ยืดหยุ่นที่สุด</p>
-                    <ul class="product-features" style="text-align: left;">
-                        <li data-translate="package3_feat1">เข้าถึงทุกระบบ</li>
-                        <li data-translate="package3_feat2">ระบบใหม่ทุกเดือน</li>
-                        <li>Update Real-time</li>
+                    <div class="pricing-name" data-translate="package3_name">Enterprise</div>
+                    <div class="pricing-price">฿399<span style="font-size: 1rem;">/mo</span></div>
+                    <div class="pricing-period" data-translate="package3_period">Monthly subscription</div>
+                    <ul class="pricing-features">
+                        <li data-translate="package3_feat1">Access All Systems</li>
+                        <li data-translate="package3_feat2">New Systems Monthly</li>
+                        <li>Real-time Updates</li>
                         <li>Priority Support</li>
-                        <li data-translate="package3_feat5">ยกเลิกได้ทุกเมื่อ</li>
+                        <li data-translate="package3_feat5">Cancel Anytime</li>
                         <li>Discord Community</li>
                     </ul>
-                    <a href="#contact" class="btn btn-primary" style="width: 100%; margin-top: 2rem;" data-translate="btn_choose">เลือกแพ็กนี้</a>
+                    <a href="#contact" class="btn btn-primary btn-full" data-translate="btn_select">Select Plan</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="faq" class="faq-section">
-        <div class="container">
-            <h2 class="section-title" data-translate="faq_title">คำถามที่พบบ่อย</h2>
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span data-translate="faq1_q">ติดตั้งยากไหม?</span>
-                        <span class="faq-icon">+</span>
-                    </div>
-                    <div class="faq-answer" data-translate="faq1_a">
-                        ไม่ยากเลยครับ แค่ Copy-Paste โค้ดเข้า Roblox Studio ใช้เวลาไม่เกิน 5 นาที พร้อมคู่มือการติดตั้งแบบ Step-by-Step
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span data-translate="faq2_q">รองรับทุกประเภทเกมไหม?</span>
-                        <span class="faq-icon">+</span>
-                    </div>
-                    <div class="faq-answer" data-translate="faq2_a">
-                        ใช่ครับ ระบบของเราออกแบบมาให้รองรับทุกประเภทเกม (RPG, Simulator, Tycoon, FPS ฯลฯ) และปรับแต่งได้ง่าย
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span data-translate="faq3_q">มี Support ภาษาไทยไหม?</span>
-                        <span class="faq-icon">+</span>
-                    </div>
-                    <div class="faq-answer" data-translate="faq3_a">
-                        มีครับ ทีมงานพูดภาษาไทย พร้อม Documentation และ Video Tutorial ภาษาไทยทั้งหมด
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span data-translate="faq4_q">ชำระเงินผ่านช่องทางไหนได้บ้าง?</span>
-                        <span class="faq-icon">+</span>
-                    </div>
-                    <div class="faq-answer" data-translate="faq4_a">
-                        รองรับ PromptPay, โอนธนาคาร, TrueMoney Wallet และ PayPal สำหรับลูกค้าต่างประเทศ
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span data-translate="faq5_q">ได้ Source Code เต็มไหม?</span>
-                        <span class="faq-icon">+</span>
-                    </div>
-                    <div class="faq-answer" data-translate="faq5_a">
-                        ได้ครับ คุณจะได้ Source Code เต็มรูปแบบ แก้ไขได้เต็มที่ ไม่มี Obfuscation หรือการเข้ารหัส
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    <!-- Testimonials -->
     <section id="testimonials" class="testimonials">
         <div class="container">
-            <h2 class="section-title" style="color: white;" data-translate="testimonial_title">ลูกค้าพูดถึงเรา</h2>
-            <div class="testimonial-grid">
+            <div class="section-header">
+                <div class="section-label">TESTIMONIALS</div>
+                <h2 class="section-title" data-translate="testimonial_title">What Our Clients Say</h2>
+                <p class="section-subtitle" data-translate="testimonial_subtitle">Trusted by developers worldwide</p>
+            </div>
+            <div class="testimonials-grid">
                 <div class="testimonial-card">
-                    <p data-translate="testimonial1_text">"ประหยัดเวลาได้มากมาย! เกมที่ควรใช้เวลาพัฒนา 3 เดือน ตอนนี้ทำเสร็จใน 2 สัปดาห์"</p>
-                    <div class="testimonial-author">- DevMaster_TH</div>
+                    <div class="testimonial-text" data-translate="testimonial1_text">
+                        "Saved us months of development time. The code quality is exceptional and the support team is incredibly responsive."
+                    </div>
+                    <div class="testimonial-author">DevMaster_TH</div>
+                    <div class="testimonial-role" data-translate="testimonial1_role">Lead Developer</div>
                 </div>
                 <div class="testimonial-card">
-                    <p data-translate="testimonial2_text">"โค้ดเขียนดี ปรับแต่งง่าย Documentation ครบ Support ตอบเร็วมาก แนะนำเลยครับ"</p>
-                    <div class="testimonial-author">- RobloxPro2024</div>
+                    <div class="testimonial-text" data-translate="testimonial2_text">
+                        "Professional-grade systems at an affordable price. Documentation is clear and implementation was seamless."
+                    </div>
+                    <div class="testimonial-author">RobloxPro2024</div>
+                    <div class="testimonial-role" data-translate="testimonial2_role">Game Developer</div>
                 </div>
                 <div class="testimonial-card">
-                    <p data-translate="testimonial3_text">"คุ้มค่ามากๆ ซื้อแพ็ก Pro มา ได้ระบบครบ ทำเกมเสร็จไวกว่าเดิมเยอะ"</p>
-                    <div class="testimonial-author">- GameCreator99</div>
+                    <div class="testimonial-text" data-translate="testimonial3_text">
+                        "Best investment for our studio. The Pro Pack paid for itself within the first month of launching our game."
+                    </div>
+                    <div class="testimonial-author">GameCreator99</div>
+                    <div class="testimonial-role" data-translate="testimonial3_role">Studio Owner</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="cta-section">
+    <!-- Contact -->
+    <section id="contact" class="contact">
         <div class="container">
-            <h2 data-translate="contact_title">พร้อมเริ่มสร้างเกมแล้วหรือยัง?</h2>
-            <p data-translate="contact_subtitle">ติดต่อเราเพื่อสั่งซื้อหรือสอบถามข้อมูลเพิ่มเติม</p>
-            
-            <div class="contact-form">
-                <form id="orderForm">
-                    <div class="form-group">
-                        <label for="name" data-translate="form_name">ชื่อ-นามสกุล *</label>
-                        <input type="text" id="name" name="name" required placeholder="">
+            <div class="section-header">
+                <div class="section-label" data-translate="contact_label">GET IN TOUCH</div>
+                <h2 class="section-title" data-translate="contact_title">Contact Us</h2>
+                <p class="section-subtitle" data-translate="contact_subtitle">Have questions? We're here to help</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3 data-translate="contact_info_title">Contact Information</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <strong>Email</strong><br>
+                            contact@rodevtools.com
+                        </div>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email *</label>
-                        <input type="email" id="email" name="email" required placeholder="example@email.com">
+                    <div class="contact-item">
+                        <div class="contact-icon">💬</div>
+                        <div>
+                            <strong>Discord</strong><br>
+                            discord.gg/rodevtools
+                        </div>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="discord">Discord Username</label>
-                        <input type="text" id="discord" name="discord" placeholder="username#1234">
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div>
+                            <strong>LINE</strong><br>
+                            @rodevtools
+                        </div>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="package" data-translate="form_package">แพ็กเกจที่สนใจ *</label>
-                        <select id="package" name="package" required>
-                            <option value="" data-translate="form_select">-- เลือกแพ็กเกจ --</option>
-                            <option value="starter" data-translate="form_opt1">Starter Pack - ฿1,499</option>
-                            <option value="pro" data-translate="form_opt2">Pro Pack - ฿2,999 (แนะนำ)</option>
-                            <option value="subscription" data-translate="form_opt3">Subscription - ฿399/เดือน</option>
-                            <option value="single" data-translate="form_opt4">ซื้อระบบเดี่ยว</option>
-                        </select>
+                    <div class="contact-item">
+                        <div class="contact-icon">🕐</div>
+                        <div>
+                            <strong data-translate="contact_hours">Business Hours</strong><br>
+                            <span data-translate="contact_hours_time">Mon-Fri: 9:00-18:00 (GMT+7)</span>
+                        </div>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="message" data-translate="form_message">ข้อความเพิ่มเติม</label>
-                        <textarea id="message" name="message" data-translate-placeholder="form_message_placeholder"></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.2rem;" data-translate="form_submit">ส่งคำสั่งซื้อ</button>
-                </form>
-                
-                <div style="margin-top: 2rem; text-align: center; color: #666;">
-                    <p><strong data-translate="contact_or">หรือติดต่อเราโดยตรง:</strong></p>
-                    <p>📧 Email: contact@rodevtools.com</p>
-                    <p>💬 Discord: discord.gg/rodevtools</p>
-                    <p>📱 Line: @rodevtools</p>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name" data-translate="form_name">Full Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="package" data-translate="form_package">Interested In *</label>
+                            <select id="package" name="package" required>
+                                <option value="" data-translate="form_select">-- Select Option --</option>
+                                <option value="starter" data-translate="form_opt1">Starter Pack - ฿1,499</option>
+                                <option value="pro" data-translate="form_opt2">Professional - ฿2,999</option>
+                                <option value="enterprise" data-translate="form_opt3">Enterprise - ฿399/month</option>
+                                <option value="custom" data-translate="form_opt4">Custom Solution</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" data-translate="form_message">Message *</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full" data-translate="form_submit">Send Message</button>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-links">
-                <a href="#features" data-translate="nav_features">ฟีเจอร์</a>
-                <a href="#products" data-translate="nav_products">ผลิตภัณฑ์</a>
-                <a href="#pricing" data-translate="nav_pricing">ราคา</a>
-                <a href="#testimonials" data-translate="testimonial_title">รีวิว</a>
-                <a href="#contact" data-translate="nav_contact">ติดต่อ</a>
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <h3>RoDevTools</h3>
+                    <p data-translate="footer_about">Professional Roblox development solutions trusted by developers worldwide. We provide enterprise-grade systems to accelerate your game development.</p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-translate="footer_products">Products</h4>
+                    <ul class="footer-links">
+                        <li><a href="#products">Admin System</a></li>
+                        <li><a href="#products">Datastore Pro</a></li>
+                        <li><a href="#products">Shop System</a></li>
+                        <li><a href="#products" data-translate="footer_all">All Systems</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-translate="footer_company">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#features" data-translate="footer_about_us">About Us</a></li>
+                        <li><a href="#testimonials" data-translate="footer_testimonials">Testimonials</a></li>
+                        <li><a href="#contact" data-translate="footer_contact">Contact</a></li>
+                        <li><a href="#" data-translate="footer_support">Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-translate="footer_legal">Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" data-translate="footer_terms">Terms of Service</a></li>
+                        <li><a href="#" data-translate="footer_privacy">Privacy Policy</a></li>
+                        <li><a href="#" data-translate="footer_license">License Agreement</a></li>
+                    </ul>
+                </div>
             </div>
-            
-            <div class="social-links">
-                <a href="#" title="Discord">💬</a>
-                <a href="#" title="YouTube">📺</a>
-                <a href="#" title="Twitter">🐦</a>
-                <a href="#" title="GitHub">💻</a>
+            <div class="footer-bottom">
+                <p data-translate="footer_copy">© 2025 RoDevTools. All rights reserved. | Professional Roblox Development Solutions</p>
             </div>
-            
-            <p style="margin-top: 2rem; opacity: 0.7;">
-                <span data-translate="footer_copy">© 2025 RoDevTools. All rights reserved.</span><br>
-                <span data-translate="footer_tagline">ระบบคุณภาพสูงสำหรับนักพัฒนา Roblox</span>
-            </p>
         </div>
     </footer>
 
     <script>
-        // ภาษา (Translations)
+        // Language Translations (แบบ Roblox - ไทย + English)
         const translations = {
             th: {
+                // Navigation
                 nav_features: "ฟีเจอร์",
                 nav_products: "ผลิตภัณฑ์",
                 nav_howto: "วิธีใช้งาน",
                 nav_pricing: "ราคา",
-                nav_contact: "ติดต่อ",
-                hero_title: "🚀 สร้างเกม Roblox ได้ภายใน 1 วัน",
-                hero_subtitle: "ระบบและฟีเจอร์สำเร็จรูปคุณภาพสูง พร้อมใช้งานทันที<br>ประหยัดเวลากว่า 100+ ชั่วโมงในการพัฒนา",
-                hero_cta1: "ติดต่อซื้อเลย",
-                hero_cta2: "ดูผลิตภัณฑ์",
-                stat_developers: "นักพัฒนาใช้งาน",
-                stat_systems: "ระบบพร้อมใช้",
+                nav_contact: "ติดต่อเรา",
+                
+                // Hero
+                hero_title: "โซลูชันพัฒนา Roblox มืออาชีพ",
+                hero_subtitle: "ระบบและฟีเจอร์คุณภาพสูงพร้อมใช้งานสำหรับนักพัฒนา Roblox ประหยัดเวลาพัฒนากว่า 100+ ชั่วโมง",
+                hero_cta1: "สำรวจโซลูชัน",
+                hero_cta2: "ขอดูตัวอย่าง",
+                stat_developers: "นักพัฒนา",
+                stat_systems: "ระบบ",
                 stat_support: "ซัพพอร์ต",
-                features_title: "ทำไมต้องเลือกเรา?",
-                features_subtitle: "ระบบคุณภาพสูง ใช้งานง่าย เหมาะกับทั้งมือใหม่และมืออาชีพ",
-                feature1_title: "ติดตั้งง่าย ใช้ได้ทันที",
-                feature1_desc: "Copy-Paste เข้าโปรเจค ใช้เวลาไม่เกิน 5 นาที พร้อม Documentation ครบถ้วนทุกขั้นตอน",
-                feature2_title: "ปรับแต่งได้ 100%",
-                feature2_desc: "โค้ดเขียนแบบโมดูลาร์ แก้ไขง่าย ปรับให้เข้ากับเกมของคุณได้ทุกแบบ",
-                feature3_title: "ปลอดภัย ไร้บั๊ก",
-                feature3_desc: "ทดสอบมาแล้วกว่า 1,000 ชั่วโมง รับประกันความเสถียร พร้อม Update ฟรี",
-                feature4_title: "คู่มือครบถ้วน",
-                feature4_desc: "มี Video Tutorial, Documentation และตัวอย่างโค้ดให้ศึกษา",
-                feature5_title: "Support 24/7",
-                feature5_desc: "ทีมงานพร้อมช่วยเหลือตลอด 24 ชม. ผ่าน Discord และ Email",
-                feature6_title: "Update ตลอดชีพ",
-                feature6_desc: "รับ Update ฟีเจอร์ใหม่ๆ และ Bug Fixes ฟรีตลอดไป",
-                products_title: "ระบบยอดนิยม",
-                products_subtitle: "ระบบคุณภาพสูงที่ใช้งานจริงในเกมดังมากมาย",
-                badge_bestseller: "ขายดี #1",
-                product1_tagline: "ระบบจัดการผู้เล่น",
-                product1_desc: "ระบบ Admin ครบครัน รองรับคำสั่งกว่า 30+ แบบ มีระบบสิทธิ์หลายระดับ",
-                product1_feat1: "คำสั่งกว่า 30+ Commands",
-                product1_feat2: "ระบบสิทธิ์หลายระดับ",
-                product1_feat3: "GUI Admin Panel",
-                product1_feat4: "Ban/Kick System",
-                product1_feat5: "Custom Notifications",
-                product2_tagline: "บันทึกข้อมูลอัตโนมัติ",
-                product2_desc: "ระบบบันทึกข้อมูลที่มีประสิทธิภาพสูง รองรับข้อมูลจำนวนมาก",
-                product2_feat1: "Auto-save ทุก 5 นาที",
+                
+                // Features
+                features_label: "ทำไมต้องเลือกเรา",
+                features_title: "โซลูชันระดับองค์กร",
+                features_subtitle: "ระบบมืออาชีพที่ออกแบบมาเพื่อความน่าเชื่อถือ ขยายได้ และใช้งานง่าย",
+                feature1_title: "ติดตั้งง่าย",
+                feature1_desc: "ระบบ Plug-and-play ที่รวมเข้ากับโปรเจค Roblox ได้อย่างราบรื่นภายในไม่กี่นาที พร้อมเอกสารครบถ้วน",
+                feature2_title: "ปรับแต่งได้เต็มที่",
+                feature2_desc: "สถาปัตยกรรมแบบโมดูลาร์ช่วยให้ปรับแต่งได้อย่างสมบูรณ์เพื่อตอบสนองความต้องการเฉพาะของเกมคุณ",
+                feature3_title: "พร้อมใช้งานจริง",
+                feature3_desc: "ทดสอบมากว่า 1000+ ชั่วโมง ความน่าเชื่อถือระดับองค์กรพร้อมระบบจัดการข้อผิดพลาดและความปลอดภัย",
+                feature4_title: "เอกสารครบถ้วน",
+                feature4_desc: "คู่มือครอบคลุม วิดีโอสอน และตัวอย่างโค้ดเพื่อให้คุณเริ่มต้นได้อย่างรวดเร็ว",
+                feature5_title: "ซัพพอร์ต 24/7",
+                feature5_desc: "ทีมซัพพอร์ตมืออาชีพพร้อมให้บริการตลอดเวลาผ่าน Discord, Email และ LINE",
+                feature6_title: "อัปเดตตลอดชีพ",
+                feature6_desc: "อัปเดตฟรี ฟีเจอร์ใหม่ และแพตช์ความปลอดภัยตลอดอายุการใช้งานใบอนุญาตของคุณ",
+                
+                // Products
+                products_label: "โซลูชันของเรา",
+                products_title: "ระบบพัฒนาพรีเมียม",
+                products_subtitle: "โซลูชันที่ผ่านการทดสอบซึ่งนักพัฒนา Roblox ชั้นนำทั่วโลกใช้งาน",
+                badge_bestseller: "ขายดีที่สุด",
+                product1_desc: "ระบบแอดมินครบครันพร้อมคำสั่งกว่า 30+ คำสั่ง สิทธิ์หลายระดับ และแผงควบคุม GUI ที่กำหนดเองได้",
+                product1_feat1: "คำสั่งแอดมิน 30+",
+                product1_feat2: "สิทธิ์หลายระดับ",
+                product1_feat3: "แผงควบคุม GUI",
+                product1_feat4: "ระบบแบน/เตะ",
+                product1_feat5: "บันทึกประวัติคำสั่ง",
+                product2_desc: "ระบบจัดการข้อมูลประสิทธิภาพสูงพร้อมการบันทึกอัตโนมัติ สำรองข้อมูล และเครื่องมือย้ายข้อมูล",
+                product2_feat1: "บันทึกอัตโนมัติทุก 5 นาที",
                 product2_feat2: "รองรับข้อมูลไม่จำกัด",
-                product2_feat3: "Backup System",
-                product2_feat4: "Error Handling",
-                product2_feat5: "Migration Tools",
-                product3_tagline: "ร้านค้าในเกม",
-                product3_desc: "ร้านค้าในเกมที่สวยงาม รองรับทั้ง Robux และเหรียญในเกม",
-                product3_feat1: "UI สวยงาม ทันสมัย",
-                product3_feat2: "รองรับ Robux/เหรียญ",
-                product3_feat3: "Gamepass Integration",
-                product3_feat4: "Limited Items",
-                product3_feat5: "Sale System",
-                btn_interested: "สนใจซื้อ",
-                howto_title: "วิธีการใช้งาน",
-                howto_subtitle: "เริ่มต้นใช้งานได้ใน 3 ขั้นตอนง่ายๆ",
-                step1_title: "เลือกและสั่งซื้อ",
-                step1_desc: "เลือกระบบที่ต้องการ ชำระเงินผ่านช่องทางที่สะดวก",
-                step2_title: "รับไฟล์และคู่มือ",
-                step2_desc: "รับไฟล์โค้ดพร้อม Documentation และ Video Tutorial",
-                step3_title: "ติดตั้งและใช้งาน",
-                step3_desc: "Copy โค้ดเข้า Roblox Studio ใช้เวลาไม่เกิน 5 นาที",
-                pricing_title: "แพ็กเกจพิเศษ",
-                pricing_subtitle: "เลือกแพ็กเกจที่เหมาะกับคุณ",
-                package1_name: "Starter Pack",
-                package1_tag: "เหมาะกับมือใหม่",
-                package1_feat1: "เลือกระบบได้ 3 ชิ้น",
-                package1_feat4: "Support 30 วัน",
-                package1_feat5: "Update 6 เดือน",
-                badge_popular: "🔥 ยอดนิยม",
-                package2_name: "Pro Pack",
-                package2_tag: "คุ้มที่สุด!",
-                package2_feat1: "ระบบทั้งหมด 10 ชิ้น",
-                package2_feat4: "Support ตลอดชีพ",
-                package2_feat5: "Update ตลอดชีพ",
-                package2_feat7: "Custom Request 1 ครั้ง",
-                package3_name: "Subscription",
-                per_month: "/เดือน",
-                package3_tag: "ยืดหยุ่นที่สุด",
-                package3_feat1: "เข้าถึงทุกระบบ",
+                product2_feat3: "สำรองข้อมูลอัตโนมัติ",
+                product2_feat4: "จัดการข้อผิดพลาด",
+                product2_feat5: "เข้ารหัสข้อมูล",
+                product3_desc: "ร้านค้าในเกมที่ทันสมัยพร้อม UI สวยงาม รองรับทั้ง Robux และสกุลเงินในเกม",
+                product3_feat1: "ดีไซน์ UI ทันสมัย",
+                product3_feat2: "รองรับ Robux/สกุลเงิน",
+                product3_feat3: "รวมเข้ากับ Gamepass",
+                product3_feat4: "ไอเทมจำกัดเวลา",
+                product3_feat5: "ระบบลดราคา",
+                btn_learn: "เรียนรู้เพิ่มเติม",
+                
+                // How It Works
+                howto_label: "กระบวนการ",
+                howto_title: "วิธีการทำงาน",
+                howto_subtitle: "เริ่มต้นได้ใน 4 ขั้นตอนง่ายๆ",
+                step1_title: "เลือกโซลูชัน",
+                step1_desc: "เลือกระบบที่เหมาะกับความต้องการของโปรเจคคุณ",
+                step2_title: "ชำระเงิน",
+                step2_desc: "ชำระเงินอย่างปลอดภัยผ่านช่องทางหลากหลาย",
+                step3_title: "ดาวน์โหลดไฟล์",
+                step3_desc: "รับซอร์สโค้ดและเอกสารครบถ้วน",
+                step4_title: "รวมและใช้งาน",
+                step4_desc: "ติดตั้งภายในไม่กี่นาทีด้วยคู่มือทีละขั้นตอน",
+                
+                // Pricing
+                pricing_label: "ราคา",
+                pricing_title: "เลือกแผนของคุณ",
+                pricing_subtitle: "ตัวเลือกราคาที่ยืดหยุ่นสำหรับทีมทุกขนาด",
+                package1_name: "เริ่มต้น",
+                package1_period: "ชำระครั้งเดียว",
+                package1_feat1: "เลือก 3 ระบบ",
+                package1_feat4: "ซัพพอร์ต 30 วัน",
+                package1_feat5: "อัปเดต 6 เดือน",
+                badge_popular: "ยอดนิยมที่สุด",
+                package2_name: "มืออาชีพ",
+                package2_period: "ชำระครั้งเดียว",
+                package2_feat1: "ระบบทั้งหมด 10 ระบบ",
+                package2_feat4: "ซัพพอร์ตตลอดชีพ",
+                package2_feat5: "อัปเดตตลอดชีพ",
+                package2_feat7: "คำขอกำหนดเอง 1 รายการ",
+                package3_name: "องค์กร",
+                package3_period: "สมัครสมาชิกรายเดือน",
+                package3_feat1: "เข้าถึงระบบทั้งหมด",
                 package3_feat2: "ระบบใหม่ทุกเดือน",
                 package3_feat5: "ยกเลิกได้ทุกเมื่อ",
-                btn_choose: "เลือกแพ็กนี้",
-                faq_title: "คำถามที่พบบ่อย",
-                faq1_q: "ติดตั้งยากไหม?",
-                faq1_a: "ไม่ยากเลยครับ แค่ Copy-Paste โค้ดเข้า Roblox Studio ใช้เวลาไม่เกิน 5 นาที พร้อมคู่มือการติดตั้งแบบ Step-by-Step",
-                faq2_q: "รองรับทุกประเภทเกมไหม?",
-                faq2_a: "ใช่ครับ ระบบของเราออกแบบมาให้รองรับทุกประเภทเกม (RPG, Simulator, Tycoon, FPS ฯลฯ) และปรับแต่งได้ง่าย",
-                faq3_q: "มี Support ภาษาไทยไหม?",
-                faq3_a: "มีครับ ทีมงานพูดภาษาไทย พร้อม Documentation และ Video Tutorial ภาษาไทยทั้งหมด",
-                faq4_q: "ชำระเงินผ่านช่องทางไหนได้บ้าง?",
-                faq4_a: "รองรับ PromptPay, โอนธนาคาร, TrueMoney Wallet และ PayPal สำหรับลูกค้าต่างประเทศ",
-                faq5_q: "ได้ Source Code เต็มไหม?",
-                faq5_a: "ได้ครับ คุณจะได้ Source Code เต็มรูปแบบ แก้ไขได้เต็มที่ ไม่มี Obfuscation หรือการเข้ารหัส",
-                testimonial_title: "ลูกค้าพูดถึงเรา",
-                testimonial1_text: '"ประหยัดเวลาได้มากมาย! เกมที่ควรใช้เวลาพัฒนา 3 เดือน ตอนนี้ทำเสร็จใน 2 สัปดาห์"',
-                testimonial2_text: '"โค้ดเขียนดี ปรับแต่งง่าย Documentation ครับ Support ตอบเร็วมาก แนะนำเลยครับ"',
-                testimonial3_text: '"คุ้มค่ามากๆ ซื้อแพ็ก Pro มา ได้ระบบครบ ทำเกมเสร็จไวกว่าเดิมเยอะ"',
-                contact_title: "พร้อมเริ่มสร้างเกมแล้วหรือยัง?",
-                contact_subtitle: "ติดต่อเราเพื่อสั่งซื้อหรือสอบถามข้อมูลเพิ่มเติม",
+                btn_select: "เลือกแผน",
+                
+                // Testimonials
+                testimonial_title: "ลูกค้าของเราพูดว่าอย่างไร",
+                testimonial_subtitle: "เชื่อถือโดยนักพัฒนาทั่วโลก",
+                testimonial1_text: '"ประหยัดเวลาพัฒนาหลายเดือน คุณภาพโค้ดยอดเยี่ยมและทีมซัพพอร์ตตอบสนองอย่างรวดเร็ว"',
+                testimonial1_role: "หัวหน้านักพัฒนา",
+                testimonial2_text: '"ระบบระดับมืออาชีพในราคาที่จับต้องได้ เอกสารชัดเจนและการใช้งานราบรื่น"',
+                testimonial2_role: "นักพัฒนาเกม",
+                testimonial3_text: '"การลงทุนที่ดีที่สุดสำหรับสตูดิโอของเรา แพ็ก Pro คืนทุนภายในเดือนแรกของการเปิดตัวเกม"',
+                testimonial3_role: "เจ้าของสตูดิโอ",
+                
+                // Contact
+                contact_label: "ติดต่อ",
+                contact_title: "ติดต่อเรา",
+                contact_subtitle: "มีคำถาม? เราพร้อมช่วยเหลือ",
+                contact_info_title: "ข้อมูลติดต่อ",
+                contact_hours: "เวลาทำการ",
+                contact_hours_time: "จันทร์-ศุกร์: 9:00-18:00 (GMT+7)",
                 form_name: "ชื่อ-นามสกุล *",
-                form_package: "แพ็กเกจที่สนใจ *",
-                form_select: "-- เลือกแพ็กเกจ --",
-                form_opt1: "Starter Pack - ฿1,499",
-                form_opt2: "Pro Pack - ฿2,999 (แนะนำ)",
-                form_opt3: "Subscription - ฿399/เดือน",
-                form_opt4: "ซื้อระบบเดี่ยว",
-                form_message: "ข้อความเพิ่มเติม",
-                form_submit: "ส่งคำสั่งซื้อ",
-                contact_or: "หรือติดต่อเราโดยตรง:",
-                footer_copy: "© 2025 RoDevTools. All rights reserved.",
-                footer_tagline: "ระบบคุณภาพสูงสำหรับนักพัฒนา Roblox"
+                form_package: "สนใจ *",
+                form_select: "-- เลือกตัวเลือก --",
+                form_opt1: "แพ็กเริ่มต้น - ฿1,499",
+                form_opt2: "มืออาชีพ - ฿2,999",
+                form_opt3: "องค์กร - ฿399/เดือน",
+                form_opt4: "โซลูชันกำหนดเอง",
+                form_message: "ข้อความ *",
+                form_submit: "ส่งข้อความ",
+                
+                // Footer
+                footer_about: "โซลูชันการพัฒนา Roblox มืออาชีพที่นักพัฒนาทั่วโลกเชื่อถือ เราให้บริการระบบระดับองค์กรเพื่อเร่งการพัฒนาเกมของคุณ",
+                footer_products: "ผลิตภัณฑ์",
+                footer_all: "ระบบทั้งหมด",
+                footer_company: "บริษัท",
+                footer_about_us: "เกี่ยวกับเรา",
+                footer_testimonials: "คำรับรอง",
+                footer_contact: "ติดต่อ",
+                footer_support: "ซัพพอร์ต",
+                footer_legal: "กฎหมาย",
+                footer_terms: "เงื่อนไขการใช้บริการ",
+                footer_privacy: "นโยบายความเป็นส่วนตัว",
+                footer_license: "ข้อตกลงใบอนุญาต",
+                footer_copy: "© 2025 RoDevTools สงวนลิขสิทธิ์ | โซลูชันการพัฒนา Roblox มืออาชีพ"
             },
             en: {
+                // Navigation
                 nav_features: "Features",
                 nav_products: "Products",
                 nav_howto: "How It Works",
                 nav_pricing: "Pricing",
-                nav_contact: "Contact",
-                hero_title: "🚀 Build Roblox Games in 1 Day",
-                hero_subtitle: "High-quality ready-made systems and features<br>Save 100+ hours of development time",
-                hero_cta1: "Buy Now",
-                hero_cta2: "View Products",
+                nav_contact: "Contact Us",
+                
+                // Hero
+                hero_title: "Professional Roblox Development Solutions",
+                hero_subtitle: "High-quality, ready-to-use systems and features for Roblox developers. Save 100+ hours of development time.",
+                hero_cta1: "Explore Solutions",
+                hero_cta2: "Request Demo",
                 stat_developers: "Developers",
-                stat_systems: "Systems Ready",
+                stat_systems: "Systems",
                 stat_support: "Support",
-                features_title: "Why Choose Us?",
-                features_subtitle: "High quality systems, easy to use, suitable for beginners and professionals",
-                feature1_title: "Easy Setup, Ready to Use",
-                feature
+                
+                // Features
+                features_label: "WHY CHOOSE US",
+                features_title: "Enterprise-Grade Solutions",
+                features_subtitle: "Professional systems designed for reliability, scalability, and ease of use",
+                feature1_title: "Easy Integration",
+                feature1_desc: "Plug-and-play systems that integrate seamlessly into your Roblox project within minutes. Complete documentation included.",
+                feature2_title: "Fully Customizable",
+                feature2_desc: "Modular architecture allows complete customization to match your game's unique requirements and branding.",
+                feature3_title: "Production-Ready",
+                feature3_desc: "Tested for 1000+ hours. Enterprise-grade reliability with built-in error handling and security features.",
+                feature4_title: "Complete Documentation",
+                feature4_desc: "Comprehensive guides, video tutorials, and code examples to get you started quickly.",
+                feature5_title: "24/7 Support",
+                feature5_desc: "Professional support team available around the clock via Discord, Email, and LINE.",
+                feature6_title: "Lifetime Updates",
+                feature6_desc: "Free updates, new features, and security patches for the lifetime of your license.",
+                
+                // Products
+                products_label: "OUR SOLUTIONS",
+                products_title: "Premium Development Systems",
+                products_subtitle: "Battle-tested solutions used by top Roblox developers worldwide",
+                badge_bestseller: "BEST SELLER",
+                product1_desc: "Comprehensive admin system with 30+ commands, multi-level permissions, and custom GUI panel.",
+                product1_feat1: "30+ Admin Commands",
+                product1_feat2: "Multi-level Permissions",
+                product1_feat3: "GUI Admin Panel",
+                product1_feat4: "Ban/Kick System",
+                product1_feat5: "Command History Logs",
+                product2_desc: "High-performance data management system with auto-save, backup, and migration tools.",
+                product2_feat1: "Auto-save Every 5 Minutes",
+                product2_feat2: "Unlimited Data Support",
+                product2_feat3: "Automatic Backup",
+                product2_feat4: "Error Handling",
+                product2_feat5: "Data Encryption",
+                product3_desc: "Modern in-game shop with beautiful UI, supporting both Robux and in-game currency.",
+                product3_feat1: "Modern UI Design",
+                product3_feat2: "Robux/Currency Support",
+                product3_feat3: "Gamepass Integration",
+                product3_feat4: "Limited-Time Items",
+                product3_feat5: "Sale System",
+                btn_learn: "Learn More",
+                
+                // How It Works
+                howto_label: "PROCESS",
+                howto_title: "How It Works",
+                howto_subtitle: "Get started in four simple steps",
+                step1_title: "Choose Solution",
+                step1_desc: "Select the system that fits your project requirements",
+                step2_title: "Complete Purchase",
+                step2_desc: "Secure payment via multiple channels",
+                step3_title: "Download Files",
+                step3_desc: "Receive complete source code and documentation",
+                step4_title: "Integrate & Deploy",
+                step4_desc: "Install in minutes with our step-by-step guide",
+                
+                // Pricing
+                pricing_label: "PRICING",
+                pricing_title: "Choose Your Plan",
+                pricing_subtitle: "Flexible pricing options for teams of all sizes",
+                package1_name: "Starter",
+                package1_period: "One-time payment",
+                package1_feat1: "Choose 3 Systems",
+                package1_feat4: "30 Days Support",
+                package1_feat5: "6 Months Updates",
+                badge_popular: "MOST POPULAR",
+                package2_name: "Professional",
+                package2_period: "One-time payment",
+                package2_feat1: "All 10 Systems",
+                package2_feat4: "Lifetime Support",
+                package2_feat5: "Lifetime Updates",
+                package2_feat7: "1 Custom Request",
+                package3_name: "Enterprise",
+                package3_period: "Monthly subscription",
+                package3_feat1: "Access All Systems",
+                package3_feat2: "New Systems Monthly",
+                package3_feat5: "Cancel Anytime",
+                btn_select: "Select Plan",
+                
+                // Testimonials
+                testimonial_title: "What Our Clients Say",
+                testimonial_subtitle: "Trusted by developers worldwide",
+                testimonial1_text: '"Saved us months of development time. The code quality is exceptional and the support team is incredibly responsive."',
+                testimonial1_role: "Lead Developer",
+                testimonial2_text: '"Professional-grade systems at an affordable price. Documentation is clear and implementation was seamless."',
+                testimonial2_role: "Game Developer",
+                testimonial3_text: '"Best investment for our studio. The Pro Pack paid for itself within the first month of launching our game."',
+                testimonial3_role: "Studio Owner",
+                
+                // Contact
+                contact_label: "GET IN TOUCH",
+                contact_title: "Contact Us",
+                contact_subtitle: "Have questions? We're here to help",
+                contact_info_title: "Contact Information",
+                contact_hours: "Business Hours",
+                contact_hours_time: "Mon-Fri: 9:00-18:00 (GMT+7)",
+                form_name: "Full Name *",
+                form_package: "Interested In *",
+                form_select: "-- Select Option --",
+                form_opt1: "Starter Pack - ฿1,499",
+                form_opt2: "Professional - ฿2,999",
+                form_opt3: "Enterprise - ฿399/month",
+                form_opt4: "Custom Solution",
+                form_message: "Message *",
+                form_submit: "Send Message",
+                
+                // Footer
+                footer_about: "Professional Roblox development solutions trusted by developers worldwide. We provide enterprise-grade systems to accelerate your game development.",
+                footer_products: "Products",
+                footer_all: "All Systems",
+                footer_company: "Company",
+                footer_about_us: "About Us",
+                footer_testimonials: "Testimonials",
+                footer_contact: "Contact",
+                footer_support: "Support",
+                footer_legal: "Legal",
+                footer_terms: "Terms of Service",
+                footer_privacy: "Privacy Policy",
+                footer_license: "License Agreement",
+                footer_copy: "© 2025 RoDevTools. All rights reserved. | Professional Roblox Development Solutions"
+            }
+        };
+
+        // Language Switching Function
+        let currentLanguage = 'th';
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Update button active state
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Update all translated elements
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+            
+            // Save preference
+            localStorage.setItem('preferred-language', lang);
+        }
+
+        // Load saved language preference
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred-language') || 'th';
+            if (savedLang !== 'th') {
+                const langBtn = document.querySelector(`button[onclick="changeLanguage('${savedLang}')"]`);
+                if (langBtn) langBtn.click();
+            }
+            
+            // Form submission handler
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const message = currentLanguage === 'th' 
+                    ? 'ขอบคุณที่ติดต่อเรา! เราจะตอบกลับภายใน 24 ชั่วโมง'
+                    : 'Thank you for contacting us! We will respond within 24 hours.';
+                alert(message);
+                this.reset();
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
